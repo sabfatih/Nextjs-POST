@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import styles from "./postPage.module.css";
+import React from "react";
 import ViewUserButton from "../components/Posts/ViewUserButton";
 import CardList from "../components/Posts/CardList";
 
@@ -13,11 +12,15 @@ interface iPosts {
 }
 
 const Posts = async () => {
-  const response = await fetch(baseURL);
+  const response = await fetch(baseURL, {
+    cache: "no-store",
+    next: { revalidate: 3600 },
+  });
   const posts: iPosts[] = await response.json();
 
   return (
     <>
+      <p>{new Date().toLocaleTimeString()}</p>
       <h1 className="bg-pink-500">Post tailwind ye</h1> {/* with tailwind */}
       {posts.map((post) => {
         return (

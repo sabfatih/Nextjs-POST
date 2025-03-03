@@ -5,7 +5,7 @@ interface IViewUserButton {
   userId?: number;
 }
 
-const ViewUserButton = async ({ userId }: IViewUserButton) => {
+const ViewUserButton = ({ userId }: IViewUserButton) => {
   const handleClick = () => alert(userId);
 
   return (
